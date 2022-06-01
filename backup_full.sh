@@ -42,3 +42,11 @@ if [ ! -d "$2" ]; then
 	echo "$2 no es un directorio valido"
 	exit 2
 fi
+
+
+#Realizamos el backup del directorio
+
+X=`basename $1`
+FECHA=$(date +%Y%m%d)
+DESTINO="$2/${X}_bkp_$FECHA.tar.gz"
+tar -cpzf $DESTINO $1
