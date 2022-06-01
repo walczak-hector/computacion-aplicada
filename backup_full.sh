@@ -1,10 +1,9 @@
 #!/bin/bash 
-LOGFILE="/path/to/log.log"
-TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
+TIEMPO=`date +"%H:%M:%S"`
 
 # Se informa al usuario como obtener ayuda
 
-if [ -z "$1" ] || [ -z "$2" ]; then
+if [ -z "$1" ] && [ -z "$2" ]; then
 	echo "Para obtener ayuda ejecutar `basename $0` -h"
 	exit 2
 fi
@@ -13,8 +12,8 @@ fi
 
 if [ "$1" == "-h" ] && [ -z "$2" ]; then
 	echo "El script realizara un backup del directorio y todo su contenido."
-  echo "Para realizar un backup, ingrese la ubicacion del directorio de origen y como segundo el directorio donde se guardara"
-  echo "Aclaracion, el script solo funcionara si se ingresan directorios como argumentos"
+	echo "Para realizar un backup, ingrese la ubicacion del directorio de origen y como segundo el directorio donde se guardara"
+	echo "Aclaracion, el script solo funcionara si se ingresan directorios como argumentos"
 	exit
 fi
 
@@ -24,13 +23,13 @@ fi
 
 if [ -z "$1" ]
 then
-	echo "No se ingreso el directorio de origen"
+	echo "$TIEMPO No se ingreso el directorio de origen"
 	exit 2
 fi
 
 if [ -z "$2" ] 
 then
-	echo "No se ingreso el directorio destino"
+	echo "$TIEMPO No se ingreso el directorio destino"
 	exit 2
 fi
 
@@ -38,19 +37,19 @@ fi
 
 if [ ! -z "$3" ] 
 then
-	echo "Se ingresaron argumentos extras"
+	echo "$TIEMPO Se ingresaron argumentos extras"
 	exit 2
 fi
 
 # Se verifica que los argumentos sean directorios
 
 if [ ! -d "$1" ]; then
-	echo "$TIMESTAMP $1 no es un directorio valido" >> $LOGFILE
+	echo "$TIEMPO $1 no es un directorio valido"
 	exit 2
 fi
 
 if [ ! -d "$2" ]; then
-	echo "$2 no es un directorio valido"
+	echo "$TIEMPO $2 no es un directorio valido"
 	exit 2
 fi
 
@@ -62,11 +61,12 @@ FECHA=$(date +%Y%m%d)
 DESTINO="$2/${X}_bkp_$FECHA.tar.gz"
 tar -cpzf $DESTINO $1
 
+#Informamos si se realizo el backup correctamente o no
 
 STATUS=`echo "$?"`
 
 if [ $STATUS -eq 0 ];then
-	echo "Se ha realizado el backup ${X} satisfactoriamente" 
+	echo "$TIEMPO Se ha realizado el backup ${X} satisfactoriamente" 
 else
-	echo "No se pudo realizar el backup ${X}"
+	echo "$TIEMPO No se pudo realizar el backup ${X}"
 fi
