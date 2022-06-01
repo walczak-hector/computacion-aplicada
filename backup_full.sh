@@ -28,7 +28,7 @@ then
 	exit 2
 fi
 
-if [ ! -z "$2" ] 
+if [ -z "$2" ] 
 then
 	echo "No se ingreso el directorio destino"
 	exit 2
