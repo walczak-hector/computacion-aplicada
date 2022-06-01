@@ -50,3 +50,12 @@ X=`basename $1`
 FECHA=$(date +%Y%m%d)
 DESTINO="$2/${X}_bkp_$FECHA.tar.gz"
 tar -cpzf $DESTINO $1
+
+
+STATUS=`echo "$?"`
+
+if [ $STATUS -eq 0 ];then
+	echo "Se ha realizado el backup ${X} satisfactoriamente" 
+else
+	echo "No se pudo realizar el backup ${X}"
+fi
