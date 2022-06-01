@@ -1,8 +1,13 @@
 #!/bin/bash 
+LOGFILE="/path/to/log.log"
+TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
 
 # Se informa al usuario como obtener ayuda
 
-echo "Para obtener ayuda ejecutar `basename $0` -h"
+if [ -z "$1" ] || [ -z "$2" ]; then
+	echo "Para obtener ayuda ejecutar `basename $0` -h"
+	exit 2
+fi
 
 # Se informa al usuario el funcionamiento del script
 
@@ -17,9 +22,15 @@ fi
 
 # Se verifica que los argumentos no esten vacios
 
-if [ -z "$1" ] || [ -z "$2" ] 
+if [ -z "$1" ]
 then
-	echo "No se ingresaron todos los argumentos"
+	echo "No se ingreso el directorio de origen"
+	exit 2
+fi
+
+if [ ! -z "$2" ] 
+then
+	echo "No se ingreso el directorio destino"
 	exit 2
 fi
 
@@ -34,7 +45,7 @@ fi
 # Se verifica que los argumentos sean directorios
 
 if [ ! -d "$1" ]; then
-	echo "$1 no es un directorio valido"
+	echo "$TIMESTAMP $1 no es un directorio valido" >> $LOGFILE
 	exit 2
 fi
 
