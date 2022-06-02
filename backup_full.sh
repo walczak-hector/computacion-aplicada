@@ -57,10 +57,9 @@ fi
 #Realizamos el backup del directorio
 
 X=`basename $1`
-Y=`basename $2`
 FECHA=$(date +%Y%m%d)
-DESTINO="${Y}/${X}_bkp_$FECHA.tar.gz"
-tar -cpzf $DESTINO $1
+DESTINO="$2/${X}_bkp_$FECHA.tar.gz"
+tar -cpzf $DESTINO $1 >> /u03/log.log
 
 #Informamos si se realizo el backup correctamente o no
 
