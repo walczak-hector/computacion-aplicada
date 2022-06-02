@@ -66,7 +66,7 @@ tar -cpzf $DESTINO $1
 STATUS=`echo "$?"`
 
 if [ $STATUS -eq 0 ];then
-	echo "$TIEMPO Se ha realizado el backup ${X} satisfactoriamente" 
+	echo "$TIEMPO Se ha realizado el backup de ${X} satisfactoriamente" 
 else
-	echo "$TIEMPO No se pudo realizar el backup ${X}"
+	echo "$TIEMPO No se pudo realizar el backup de ${X}"
 fi
