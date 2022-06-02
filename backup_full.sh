@@ -59,7 +59,7 @@ fi
 X=`basename $1`
 FECHA=$(date +%Y%m%d)
 DESTINO="$2/${X}_bkp_$FECHA.tar.gz"
-tar -cpzf $DESTINO $1 >> /u03/log.log
+tar -cpzf $DESTINO $1 > /u03/log.log
 
 #Informamos si se realizo el backup correctamente o no
 
