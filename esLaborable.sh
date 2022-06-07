@@ -23,12 +23,6 @@ then
 	exit
 fi
 
-#FERIADO=`cat feriados.txt | grep -w $FECHA`
-
-#Si $FERIADO existe, no es laborable e imprime el porque
-
-#Si $FERIADO es vacio, es laborable
-
 if [ "$FERIADO" ]
 then
 	echo "No es laborable"
