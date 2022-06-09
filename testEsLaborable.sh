@@ -5,4 +5,4 @@ echo "Ingrese el dia a verificar en formato ANSI (YYYY/MM/DD)"
 read VAR
 
 #Se invoca al script esLaborable con VAR como argumento
-./esLaborable $VAR
+./esLaborable.sh $VAR
