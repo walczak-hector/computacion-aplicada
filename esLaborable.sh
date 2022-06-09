@@ -32,10 +32,16 @@ fi
 }
 
 #Se verifica si la fecha ingresada es correcta y se invoca a la funcion"
-a=$(if [[ $1 =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] && date -d "$1" >/dev/null 2>&1)
-if [ $a==0]; then
-	esLaborable $1
+if [[ $1 =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+	date -d "$1" >/dev/null 2>&1
+	if [ $? -eq 0 ]; then
+		esLaborable $1
+		exit
+	else
+		echo "Fecha invalida. Ingresar en formato YYYY/MM/DD"
+		exit 2
+	fi
 else
-	echo "fecha ingresada incorrectamente"
+	echo "Formato de fecha incorrecto. Ingresar en formato YYYY/MM/DD"
 	exit 2
 fi
