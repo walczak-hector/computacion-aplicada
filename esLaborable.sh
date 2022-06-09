@@ -9,7 +9,7 @@ DIA=`date -d $1 +%u`
 DIA2=`date -d $1 +%d/%m`
 
 #Buscamos el dia en la lista de feriados
-FERIADO=`cat feriados.txt | grep -w $DIA2`
+FERIADO=`cat lista_feriados.txt | grep -w $DIA2`
 
 #Se verifica que el dia no sea sabado
 if [ $DIA = 6 ];then
@@ -31,5 +31,11 @@ else
 fi
 }
 
-#Se invoca a la funcion
-esLaborable $1
+#Se verifica si la fecha ingresada es correcta y se invoca a la funcion"
+a=$(if [[ $1 =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] && date -d "$1" >/dev/null 2>&1)
+if [ $a==0]; then
+	esLaborable $1
+else
+	echo "fecha ingresada incorrectamente"
+	exit 2
+fi
